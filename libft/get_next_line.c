@@ -25,7 +25,7 @@ int		ft_check_line(t_list *list, char **line)
 	{
 		*line = ft_strdup(list->content);
 		ft_memdel(&list->content);
-		return (1);
+		return (-1);
 	}
 	str = ft_strdup(ft_strchr(list->content, '\n'));
 	*line = ft_strndup(list->content, '\n');

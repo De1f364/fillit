@@ -1,37 +1,31 @@
 #include "../includes/fillit.h"
 
-int check_validation(int fd)
-{
-	char *str;
-	char buf[BUFF_SIZE + 1];
-	int ret;
-
-	str = NULL;
-	while ((ret = read(fd, buf, BUFF_SIZE) > 0))
-	{
-		if (ret == -1)
-			return (-1);
-		buf[ret] = '\0';
-		str = ft_strjoin(str, buf);
-/*		ft_memdel(&list->content);
-		list->content = ft_strdup(tmp);
-		ft_strdel(&tmp);
-		if (ft_strchr(buf, '\n'))
-			break ;*/
-	}
-
-
-}
-
 int main(int argc, char **argv)
 {
 	int fd;
+	int  ret;
+	char *str;
+	int count;
 
+	count = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		check_validation(fd);
-
+		while ((ret= get_next_line(fd, &str)) > 0)
+		{
+			count++;
+			if (ft_strlen(str) != 4)
+			{
+				if (ft_strlen(str) != 0 && count == 5)
+				{
+					ft_putstr("error");
+					break;
+				}
+				count = 0;
+			}
+		}
+		if (ret == -1)
+			ft_putstr("error");
 	}
 	else
 		ft_putstr("usage: you need to put 1 file as parametr");
