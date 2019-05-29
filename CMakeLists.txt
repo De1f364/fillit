@@ -75,4 +75,4 @@ add_executable(filit
         libft/get_next_line.c
         libft/libft.h
         src/main.c
-        fillit.c)
+        )
