@@ -13,7 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # define MAX 1000
-# define BUFF_SIZE 4
+# define BUFF_SIZE 1
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/stat.h>
