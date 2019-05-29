@@ -6,15 +6,34 @@
 /*   By: rdonnor <rdonnor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 21:37:01 by rdonnor           #+#    #+#             */
-/*   Updated: 2019/05/29 18:49:57 by rdonnor          ###   ########.fr       */
-.fr       */
-=======
-/*   Updated: 2019/05/29 18:29:45 by neddison         ###   ########.fr       */
->>>>>>> ca73e4865f542d94ca7738b9869da0a239fc5402
+/*   Updated: 2019/05/29 18:54:03 by rdonnor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fillit.h"
+
+int check_validation(int fd)
+{
+	char *str;
+	char buf[BUFF_SIZE + 1];
+	int ret;
+
+	str = NULL;
+	while ((ret = read(fd, buf, BUFF_SIZE) > 0))
+	{
+		if (ret == -1)
+			return (-1);
+		buf[ret] = '\0';
+		str = ft_strjoin(str, buf);
+/*		ft_memdel(&list->content);
+		list->content = ft_strdup(tmp);
+		ft_strdel(&tmp);
+		if (ft_strchr(buf, '\n'))
+			break ;*/
+	}
+
+
+}
 
 int main(int argc, char **argv)
 {
@@ -23,6 +42,7 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
+		check_validation(fd);
 
 	}
 	else
