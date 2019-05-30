@@ -1,48 +1,60 @@
 #include "../includes/fillit.h"
 
-char    *make_str_map(char **str)
+void    *make_str_map(char **str)
 {
-    static char *tmp;
-    char        arr[26];
+    char        *arr[26];
     int         i;
 
     i = 0;
-    if (ft_strlen(&tmp) != 16)
-        tmp = ft_strjoin(tmp, *str);
-    arr[i] = tmp;
-
-    return (tmp);
+    if (ft_strlen(*str) == 16)
+    {
+		arr[i] = ft_strnew(ft_strlen(*str));
+		arr[i] = *str;
+		i++;
+	}
 }
 
+
+void read_file(int fd, char **str)
+{
+	int  ret;
+	int count;
+	char *tmp;
+
+	tmp = NULL;
+	count = 0;
+	while ((ret= get_next_line(fd, str)) > 0)
+	{
+		count++;
+		tmp  = ft_strjoin(tmp, *str);
+		if (count == 5)
+		{
+			make_str_map(&tmp);
+			ft_strdel(&tmp);
+		}
+		if (ft_strlen(*str) != 4)
+		{
+			if (ft_strlen(*str) != 0 && count == 5)
+			{
+				ft_putstr("error");
+				break;
+			}
+			count = 0;
+		}
+	}
+	if (ret == -1)
+		ft_putstr("error");
+}
 
 int main(int argc, char **argv)
 {
 	int fd;
-	int  ret;
 	char *str;
-	int count;
-	char *tmp;
 
-	count = 0;
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		while ((ret= get_next_line(fd, &str)) > 0)
-		{
-            tmp = make_str_map(&str);
-			count++;
-			if (ft_strlen(str) != 4)
-			{
-				if (ft_strlen(str) != 0 && count == 5)
-				{
-					ft_putstr("error");
-					break;
-				}
-				count = 0;
-			}
-		}
-		if (ret == -1)
-			ft_putstr("error");
+		read_file(fd, &str);
 	}
 	else
 		ft_putstr("usage: you need to put 1 file as parametr");
