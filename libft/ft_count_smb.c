@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_count_smb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neddison <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 18:22:38 by neddison          #+#    #+#             */
-/*   Updated: 2019/04/16 18:24:54 by neddison         ###   ########.fr       */
+/*   Created: 2019/04/20 17:30:58 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/20 17:32:10 by neddison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+size_t		ft_count_smb(char const *s, char c)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	else
-		return (0);
+	size_t		i;
+	size_t		count;
+
+	i = 0;
+	count = 0;
+	while (s[i] == c && s[i] != '\0')
+		i++;
+	while (s[i])
+	{
+		while (s[i] != c && s[i] != '\0')
+			i++;
+		count++;
+		while (s[i] == c && s[i] != '\0')
+			i++;
+	}
+	return (count);
 }

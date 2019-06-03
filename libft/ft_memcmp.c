@@ -1,21 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/10 18:17:49 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/15 22:09:06 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
-	size_t			num;
+	unsigned char	*a;
+	unsigned char	*b;
+	size_t			i;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	num = 0;
-	if (str1 == str2)
-		return (0);
-	while (num < n)
+	i = 0;
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
+	while (i < n)
 	{
-		if (str1[num] != str2[num])
-			return (str1[num] - str2[num]);
-		num++;
+		if (a[i] != b[i])
+			return (a[i] - b[i]);
+		i++;
 	}
 	return (0);
 }

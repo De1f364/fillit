@@ -1,20 +1,5 @@
 #include "../includes/fillit.h"
 
-void    *make_str_map(char **str)
-{
-    char        *arr[26];
-    int         i;
-
-    i = 0;
-    if (ft_strlen(*str) == 16)
-    {
-		arr[i] = ft_strnew(ft_strlen(*str));
-		arr[i] = *str;
-		i++;
-	}
-}
-
-
 void read_file(int fd, char **str)
 {
 	int  ret;
@@ -29,7 +14,6 @@ void read_file(int fd, char **str)
 		tmp  = ft_strjoin(tmp, *str);
 		if (count == 5)
 		{
-			make_str_map(&tmp);
 			ft_strdel(&tmp);
 		}
 		if (ft_strlen(*str) != 4)
@@ -44,6 +28,7 @@ void read_file(int fd, char **str)
 	}
 	if (ret == -1)
 		ft_putstr("error");
+    ft_strdel(&tmp);
 }
 
 int main(int argc, char **argv)

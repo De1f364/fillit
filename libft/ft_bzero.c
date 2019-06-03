@@ -1,20 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/26 19:08:54 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/26 19:08:55 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*str;
-	size_t			num;
-
-	str = (unsigned char *)s;
-	num = 0;
 	if (n == 0)
 		return ;
-	else
-	{
-		while (num < n)
-		{
-			str[num] = 0;
-			num++;
-		}
-	}
+	ft_memset(s, 0, n);
 }

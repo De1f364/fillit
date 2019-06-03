@@ -1,27 +1,78 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/13 16:37:37 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/16 18:38:19 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static	char	ft_white_space(int c)
+static int		start(const char *s)
 {
-	return (c == ' ' || c == '\t' || c == '\n');
+	int			i;
+	int			count;
+
+	i = 0;
+	count = 0;
+	if (!s)
+		return (0);
+	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
+	{
+		count++;
+		i++;
+	}
+	if (s[i] == '\0')
+		return (-1);
+	return (count);
+}
+
+static int		end(const char *s)
+{
+	int			i;
+	int			count;
+
+	i = ft_strlen(s) - 1;
+	count = 0;
+	if (!s)
+		return (0);
+	while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n')
+	{
+		count++;
+		i--;
+	}
+	return (count);
 }
 
 char			*ft_strtrim(char const *s)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int			first;
+	int			last;
+	int			i;
+	char		*tab;
 
-	i = 0;
 	if (!s)
 		return (NULL);
-	while (s[i] != '\0' && ft_white_space(s[i]))
-		i++;
-	j = ft_strlen(&s[i]) - 1;
-	while (s[i] != '\0' && ft_white_space(s[j + i]))
-		j--;
-	str = ft_strnew(j + 1);
-	if (str == 0)
-		return (NULL);
-	ft_strncpy(str, (s + i), (j + 1));
-	return (str);
+	i = 0;
+	first = start(s);
+	last = ft_strlen(s) - end(s);
+	if (first < last)
+	{
+		tab = ft_strnew(last - first);
+		if (tab == NULL)
+			return (NULL);
+		while (s[1] && first < last)
+		{
+			tab[i] = s[first];
+			first++;
+			i++;
+		}
+		tab[i] = '\0';
+		return (tab);
+	}
+	return (NULL);
 }

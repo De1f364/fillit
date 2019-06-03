@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_len_rnd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: neddison <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/11 18:22:38 by neddison          #+#    #+#             */
-/*   Updated: 2019/04/16 18:24:54 by neddison         ###   ########.fr       */
+/*   Created: 2019/04/20 17:38:13 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/20 17:38:46 by neddison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_isprint(int c)
+size_t		ft_len_rnd(char const *s, char c, size_t i)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	else
-		return (0);
+	size_t	j;
+
+	j = i;
+	while (s[j] != c && s[j] != '\0')
+	{
+		j++;
+		if (s[j] == c || s[j] == '\0')
+			return (j - i);
+	}
+	return (0);
 }

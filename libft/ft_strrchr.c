@@ -1,24 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/10 22:51:30 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/10 23:06:08 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
-	char	*str;
-	char	symbol;
+	unsigned char	*a;
+	size_t			i;
 
 	i = ft_strlen(s);
-	symbol = (char)c;
-	str = (char *)s;
-	if (s == NULL)
-		return (0);
-	else
+	a = (unsigned char *)s;
+	while (i)
 	{
-		while (-1 < i)
-		{
-			if (str[i] == symbol)
-				return (str + i);
-			i--;
-		}
+		if (a[i] == (unsigned char)c)
+			return ((char *)&a[i]);
+		i--;
 	}
+	if (i == 0 && a[i] == (unsigned char)c)
+		return ((char *)&a[i]);
 	return (NULL);
 }

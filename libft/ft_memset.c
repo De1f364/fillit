@@ -1,18 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/26 19:10:02 by neddison          #+#    #+#             */
+/*   Updated: 2019/04/26 19:10:03 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *str, int c, size_t len)
 {
-	unsigned char	symbol;
-	char			*str;
-	size_t			count;
+	size_t i;
 
-	symbol = (unsigned char)c;
-	str = (char *)b;
-	count = 0;
-	while (count < len)
-	{
-		str[count] = symbol;
-		count++;
-	}
-	return (b);
+	i = 0;
+	while (i < len)
+		((char *)str)[i++] = (unsigned char)c;
+	return (str);
 }
