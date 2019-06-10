@@ -14,11 +14,11 @@ int main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
-/*	if (!check_valid(str))
+	if (!check_valid(str))
 	{
 		ft_putstr("error\n");
 		return (0);
-	}*/
+	}
 	//get_tetro();
 	//solve_tetro();
 	//print_map();

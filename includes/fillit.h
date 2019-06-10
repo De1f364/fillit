@@ -8,5 +8,6 @@
 
 int 	main(int argc, char **argv);
 char	*read_file(int fd);
+int 	check_valid(char *str);
 
 #endif
