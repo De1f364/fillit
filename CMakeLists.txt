@@ -71,4 +71,5 @@ add_executable(filit
         libft/libft.h
         src/main.c
         src/read_check.c
+        src/tetrominos.c
         )

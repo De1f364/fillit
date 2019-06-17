@@ -74,6 +74,7 @@ int 	check_valid(char *str)
 		else
 			break;
 	}
+	return (1);
 }
 
 char	*read_file(int fd)
