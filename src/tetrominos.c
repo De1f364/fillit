@@ -50,12 +50,12 @@ t_list	*get_tetro(char	*str, char letter)
 {
 	char	*tetro;
 	int 	i;
-	t_list	*tetro_list;
-	t_list 	*tet_list;
+	static	t_list	*tetro_list;
+	t_list	*list_new;
 
-	tetro_list = NULL;
-	tet_list = NULL;
 	i = -1;
+	if (!tetro_list)
+		tetro_list= ft_lstnew(NULL, 0);
 	tetro = NULL;
 	while (*str != '#')
 		str++;
@@ -63,6 +63,7 @@ t_list	*get_tetro(char	*str, char letter)
 	while (tetro[++i])
 		if (tetro[i] == '#')
 			tetro[i] = letter;
-	ft_lstadd(&tetro_list, ft_lstnew(tetro, 20));
+	list_new = ft_lstnew(tetro, 20);
+	ft_lstadd(&tetro_list, list_new);
 	return (tetro_list);
 }
