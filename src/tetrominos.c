@@ -1,5 +1,23 @@
 #include "../includes/fillit.h"
 
+void	*tetro_list_rev(t_list **tetro_list)
+{
+	t_list	*prev;
+	t_list	*cur;
+	t_list	*fut;
+
+	prev = NULL;
+	cur = *tetro_list;
+	while (cur != NULL)
+	{
+		fut = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = fut;
+	}
+	*tetro_list = prev;
+}
+
 char	*tetro_for_solve(const char *str, char *tetro)
 {
 	int 	i;
@@ -65,5 +83,6 @@ t_list	*get_tetro(char	*str, char letter)
 			tetro[i] = letter;
 	list_new = ft_lstnew(tetro, 20);
 	ft_lstadd(&tetro_list, list_new);
+	tetro_list_rev(&tetro_list);
 	return (tetro_list);
 }

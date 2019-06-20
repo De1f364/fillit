@@ -77,9 +77,8 @@ int 	check_valid(char *str)
 	return (1);
 }
 
-char	*read_file(int fd)
+t_list		*read_file_for_solve(int fd)
 {
-	char	*str;
 	char 	*tmp;
 	int 	rd;
 	char 	letter;
@@ -90,6 +89,28 @@ char	*read_file(int fd)
 	tmp = ft_strnew(20);
 	if ((fd < 0 || read(fd, tmp, 0) < 0))
 		return (NULL);
+	while ((rd = read(fd, tmp, 21)))
+	{
+		tmp[rd] = '\0';
+		tetro_list = get_tetro(tmp, letter++);
+	}
+	ft_memdel((void**)&tmp);
+	return (tetro_list);
+}
+
+char		*read_file(int fd)
+{
+	char	*str;
+	char 	*tmp;
+	int 	rd;
+//	char 	letter;
+//	t_list	*tetro_list;
+
+//	letter = 'A';
+//	tetro_list = NULL;
+	tmp = ft_strnew(20);
+	if ((fd < 0 || read(fd, tmp, 0) < 0))
+		return (NULL);
 	str = (char*)ft_memalloc(sizeof(char));
 	while ((rd = read(fd, tmp, 21)))
 	{
@@ -97,7 +118,7 @@ char	*read_file(int fd)
 		str = ft_strjoin(str, tmp);
 		if (ft_strlen(str) > 570)
 			return (NULL);
-		tetro_list = get_tetro(tmp, letter++);
+//		tetro_list = get_tetro(tmp, letter++);
 	}
 	ft_memdel((void**)&tmp);
 	str = ft_strcat(str, "\0");

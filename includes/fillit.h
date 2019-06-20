@@ -13,6 +13,8 @@ int 	check_block(const char *str);
 int 	check_tetro(const char *str);
 t_list	*get_tetro(char	*str, char letter);
 char	*tetro_for_solve(const char *str, char *tetro);
+t_list	*read_file_for_solve(int fd);
+char 	*create_map(int num);
 
 
 #endif

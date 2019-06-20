@@ -1,10 +1,26 @@
 #include "../includes/fillit.h"
+#include <stdio.h>
+
+int		tetro_list_count(t_list *list)
+{
+	int		i;
+
+	i = 0;
+	while (list != NULL)
+	{
+		list = list->next;
+		i++;
+	}
+	return (i - 1);
+}
+
 
 int main(int argc, char **argv)
 {
 	char	*str;
 	char	letter;
-//	t_list	*tetro_list;
+	char 	*map;
+	t_list	*tetro_list;
 
 //	letter = 'A';
 //	tetro_list = NULL;
@@ -23,8 +39,14 @@ int main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
-//
-//	map = solve_tetro(list);
+	if ((tetro_list = read_file_for_solve(open(argv[1], O_RDONLY))) == NULL)
+	{
+		ft_putstr("error\n");
+		return (0);
+	}
+	map = create_map(tetro_list_count(tetro_list));
+	printf("%s", map);
+
 //	print_map(map);
 //	free_all();
 
