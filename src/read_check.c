@@ -94,6 +94,7 @@ t_list		*read_file_for_solve(int fd)
 		tmp[rd] = '\0';
 		tetro_list = get_tetro(tmp, letter++);
 	}
+	tetro_list_rev(&tetro_list);
 	ft_memdel((void**)&tmp);
 	return (tetro_list);
 }

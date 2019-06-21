@@ -17,7 +17,7 @@ char 	*create_map(int num) {
 	{
 		if (i == value * value)
 			map[i] = '\0';
-		if (j != 4)
+		if (j != value + 1)
 		{
 			map[i] = '.';
 			j++;

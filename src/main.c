@@ -11,7 +11,7 @@ int		tetro_list_count(t_list *list)
 		list = list->next;
 		i++;
 	}
-	return (i - 1);
+	return (i);
 }
 
 
@@ -44,6 +44,9 @@ int main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
+
+	printf("%s\n", tetro_list->content);
+	printf("%s\n", tetro_list->next->content);
 	map = create_map(tetro_list_count(tetro_list));
 	printf("%s", map);
 

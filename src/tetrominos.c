@@ -5,6 +5,7 @@ void	*tetro_list_rev(t_list **tetro_list)
 	t_list	*prev;
 	t_list	*cur;
 	t_list	*fut;
+	t_list	*temp;
 
 	prev = NULL;
 	cur = *tetro_list;
@@ -14,9 +15,12 @@ void	*tetro_list_rev(t_list **tetro_list)
 		cur->next = prev;
 		prev = cur;
 		cur = fut;
+		temp = prev->next;
 	}
-	*tetro_list = prev;
+	*tetro_list = temp;
 }
+
+
 
 char	*tetro_for_solve(const char *str, char *tetro)
 {
@@ -83,6 +87,6 @@ t_list	*get_tetro(char	*str, char letter)
 			tetro[i] = letter;
 	list_new = ft_lstnew(tetro, 20);
 	ft_lstadd(&tetro_list, list_new);
-	tetro_list_rev(&tetro_list);
+//	tetro_list_rev(&tetro_list);
 	return (tetro_list);
 }
