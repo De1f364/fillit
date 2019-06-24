@@ -77,26 +77,30 @@ int 	check_valid(char *str)
 	return (1);
 }
 
-t_list		*read_file_for_solve(int fd)
+t_list		*read_file_for_solve(char *str)
 {
-	char 	*tmp;
-	int 	rd;
-	char 	letter;
-	t_list	*tetro_list;
+	int			i;
+	char		letter;
+	t_list		*tetris_list;
+	t_tetris	*tetris;
 
+	tetris_list = NULL;
+	tetris = NULL;
 	letter = 'A';
-	tetro_list = NULL;
-	tmp = ft_strnew(20);
-	if ((fd < 0 || read(fd, tmp, 0) < 0))
-		return (NULL);
-	while ((rd = read(fd, tmp, 21)))
+	i = 0;
+	while (str[i])
 	{
-		tmp[rd] = '\0';
-		tetro_list = get_tetro(tmp, letter++);
+		tetris = get_tetro(&str[i], letter);
+		ft_lstadd(&tetris_list, ft_lstnew(tetris, sizeof(t_tetris)));
+		i += 19;
+		if (str[i + 1] == '\n')
+			i += 2;
+		else
+			break ;
+		letter++;
 	}
-	tetro_list_rev(&tetro_list);
-	ft_memdel((void**)&tmp);
-	return (tetro_list);
+	tetro_list_rev(&tetris_list);
+	return (tetris_list);
 }
 
 char		*read_file(int fd)

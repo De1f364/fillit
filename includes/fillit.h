@@ -6,6 +6,26 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+typedef	struct	s_map
+{
+	int			size;
+	char		**content;
+}				t_map;
+
+typedef struct	s_tetris
+{
+	char		**pos;
+	int			height;
+	int			width;
+	char		letter;
+}				t_tetris;
+
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+}				t_point;
+
 int 	main(int argc, char **argv);
 char	*read_file(int fd);
 int 	check_valid(char *str);

@@ -1,5 +1,4 @@
 #include "../includes/fillit.h"
-#include <stdio.h>
 
 int		tetro_list_count(t_list *list)
 {
@@ -14,12 +13,32 @@ int		tetro_list_count(t_list *list)
 	return (i);
 }
 
+void	*tetro_list_rev(t_list **tetro_list)
+{
+	t_list	*prev;
+	t_list	*cur;
+	t_list	*fut;
+	t_list	*temp;
+
+	prev = NULL;
+	temp = NULL;
+	cur = *tetro_list;
+	while (cur != NULL)
+	{
+		fut = cur->next;
+		cur->next = prev;
+		prev = cur;
+		cur = fut;
+		temp = prev->next;
+	}
+	*tetro_list = temp;
+}
 
 int main(int argc, char **argv)
 {
 	char	*str;
 	char	letter;
-	char 	*map;
+//	char 	*map;
 	t_list	*tetro_list;
 
 //	letter = 'A';
@@ -39,16 +58,10 @@ int main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (0);
 	}
-	if ((tetro_list = read_file_for_solve(open(argv[1], O_RDONLY))) == NULL)
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
+	tetro_list = read_file_for_solve(str);
 
-	printf("%s\n", tetro_list->content);
-	printf("%s\n", tetro_list->next->content);
-	map = create_map(tetro_list_count(tetro_list));
-	printf("%s", map);
+//	map = create_map(tetro_list_count(tetro_list));
+//	printf("%s", map);
 
 //	print_map(map);
 //	free_all();

@@ -73,4 +73,5 @@ add_executable(filit
         src/read_check.c
         src/tetrominos.c
         src/solve.c
+        src/map.c
         )

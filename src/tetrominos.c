@@ -1,28 +1,73 @@
 #include "../includes/fillit.h"
 
-void	*tetro_list_rev(t_list **tetro_list)
+t_tetris		*create_tetris(char **pos, int height, int width, char letter)
 {
-	t_list	*prev;
-	t_list	*cur;
-	t_list	*fut;
-	t_list	*temp;
+	t_tetris *tetris;
 
-	prev = NULL;
-	cur = *tetro_list;
-	while (cur != NULL)
-	{
-		fut = cur->next;
-		cur->next = prev;
-		prev = cur;
-		cur = fut;
-		temp = prev->next;
-	}
-	*tetro_list = temp;
+	if ((tetris = ft_memalloc(sizeof(t_tetris))) == NULL)
+		return (NULL);
+	tetris->pos = pos;
+	tetris->height = height;
+	tetris->width = width;
+	tetris->letter = letter;
+	return (tetris);
 }
 
+t_point		*get_point(int x, int y)
+{
+	t_point *point;
 
+	if ((point = ft_memalloc(sizeof(t_point))) == NULL)
+		return (NULL);
+	point->x = x;
+	point->y = y;
+	return (point);
+}
 
-char	*tetro_for_solve(const char *str, char *tetro)
+void		get_min_and_max(char *tetris, t_point *min, t_point *max)
+{
+	int	i;
+
+	i = 0;
+	while (i < 19)
+	{
+		if (tetris[i] == '#')
+		{
+			if (min->x > i % 5)
+				min->x = i % 5;
+			if (min->y > i / 5)
+				min->y = i / 5;
+			if (max->x < i % 5)
+				max->x = i % 5;
+			if (max->y < i / 5)
+				max->y = i / 5;
+		}
+		i++;
+	}
+}
+
+t_list		*free_all_tetri(t_list *lst_tetris)
+{
+	t_tetris		*tetris;
+	t_list			*next;
+	int				i;
+
+	i = 0;
+	while (lst_tetris)
+	{
+		tetris = (t_tetris*)lst_tetris->content;
+		next = lst_tetris->next;
+		while (i < tetris->height)
+		{
+			ft_memdel((void**)(&(tetris->pos[i])));
+			i++;
+		}
+		ft_memdel((void**)&lst_tetris);
+		lst_tetris = next;
+	}
+	return (NULL);
+}
+/*char	*tetro_for_solve(const char *str, char *tetro)
 {
 	int 	i;
 
@@ -66,27 +111,31 @@ char	*tetro_for_solve(const char *str, char *tetro)
 	if (str[i + 3] == '#' && str[i + 4] == '#' && str[i + 5] == '#')
 		tetro = ft_strdup("..#\n###\n");
 	return (tetro);
-}
+}*/
 
 t_list	*get_tetro(char	*str, char letter)
 {
-	char	*tetro;
-	int 	i;
-	static	t_list	*tetro_list;
-	t_list	*list_new;
+	t_point		*min;
+	t_point		*max;
+	char		**pos;
+	int			i;
+	t_tetris	*tetris_content;
 
-	i = -1;
-	if (!tetro_list)
-		tetro_list= ft_lstnew(NULL, 0);
-	tetro = NULL;
-	while (*str != '#')
-		str++;
-	tetro = tetro_for_solve(str, tetro);
-	while (tetro[++i])
-		if (tetro[i] == '#')
-			tetro[i] = letter;
-	list_new = ft_lstnew(tetro, 20);
-	ft_lstadd(&tetro_list, list_new);
-//	tetro_list_rev(&tetro_list);
-	return (tetro_list);
+	i = 0;
+	min = get_point(3, 3);
+	max = get_point(0, 0);
+	get_min_and_max(str, min, max);
+	pos = ft_memalloc(sizeof(char*) * (max->y - min->y) + 1);
+	while (i < max->y - min->y + 1)
+	{
+		pos[i] = ft_strnew((max->x - min->x) + 1);
+		ft_memcpy(pos[i], &str[min->x + (i + min->y) * 5],
+				  (max->x - min->x) + 1);
+		i++;
+	}
+	tetris_content = create_tetris(pos, (max->y - min->y) + 1,
+								 (max->x - min->x + 1), letter);
+	ft_memdel((void**)&min);
+	ft_memdel((void**)&max);
+	return (tetris_content);
 }

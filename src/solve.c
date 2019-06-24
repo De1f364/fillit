@@ -1,33 +1,48 @@
 #include "../includes/fillit.h"
 
-char 	*create_map(int num) {
-	char *map;
-	int value;
-	int i;
-	int j;
+int		back_track(t_map *map, t_list *lst)
+{
+	int		i;
+	int		j;
+	t_tetris	*tetri;
 
-	map = NULL;
-	value = 0;
-	while (value * value < num * 4)
-		value++;
-	map = ft_strnew(value * (value + 1));
-	i = 0;
-	j = 1;
-	while (i < value * (value + 1))
+	if (lst == NULL)
+		return (1);
+	j = 0;
+	tetri = (t_tetris*)(lst->content);
+	while (j < map->size - tetri->height + 1)
 	{
-		if (i == value * value)
-			map[i] = '\0';
-		if (j != value + 1)
+		i = 0;
+		while (i < map->size - tetri->width + 1)
 		{
-			map[i] = '.';
-			j++;
+			if (place_tetri(map, tetri, i, j))
+			{
+				if (back_track(map, lst->next))
+					return (1);
+				else
+					setchar_tetri(map, tetri, get_point(i, j), '.');
+			}
+			i++;
 		}
-		else
-		{
-			map[i] = '\n';
-			j = 1;
-		}
-		i++;
+		j++;
+	}
+	return (0);
+}
+
+t_map	*solve(t_list *lst)
+{
+	t_map	*map;
+	int		size;
+
+	size = 2;
+	while (size * size < tetro_list_count(lst) * 4)
+		size++;
+	map = create_map(size);
+	while (!back_track(map, lst))
+	{
+		size++;
+		free_map(map);
+		map = create_map(size);
 	}
 	return (map);
 }
