@@ -108,22 +108,17 @@ char		*read_file(int fd)
 	char	*str;
 	char 	*tmp;
 	int 	rd;
-//	char 	letter;
-//	t_list	*tetro_list;
 
-//	letter = 'A';
-//	tetro_list = NULL;
 	tmp = ft_strnew(20);
 	if ((fd < 0 || read(fd, tmp, 0) < 0))
 		return (NULL);
 	str = (char*)ft_memalloc(sizeof(char));
-	while ((rd = read(fd, tmp, 21)))
+	while ((rd = read(fd, tmp, 20)))
 	{
 		tmp[rd] = '\0';
 		str = ft_strjoin(str, tmp);
 		if (ft_strlen(str) > 570)
 			return (NULL);
-//		tetro_list = get_tetro(tmp, letter++);
 	}
 	ft_memdel((void**)&tmp);
 	str = ft_strcat(str, "\0");

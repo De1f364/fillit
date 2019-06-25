@@ -17,21 +17,18 @@ void	*tetro_list_rev(t_list **tetro_list)
 {
 	t_list	*prev;
 	t_list	*cur;
-	t_list	*fut;
-	t_list	*temp;
+	t_list	*next;
 
 	prev = NULL;
-	temp = NULL;
 	cur = *tetro_list;
 	while (cur != NULL)
 	{
-		fut = cur->next;
+		next = cur->next;
 		cur->next = prev;
 		prev = cur;
-		cur = fut;
-		temp = prev->next;
+		cur = next;
 	}
-	*tetro_list = temp;
+	*tetro_list = prev;
 }
 
 int main(int argc, char **argv)
