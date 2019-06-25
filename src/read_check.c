@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_check.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/25 21:46:49 by neddison          #+#    #+#             */
+/*   Updated: 2019/06/25 21:50:12 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
-int 	check_tetro(const char *str)
+int			check_tetro(const char *str)
 {
-	int 	i;
-	int 	count;
+	int		i;
+	int		count;
 
 	i = 0;
 	count = 0;
@@ -27,17 +39,18 @@ int 	check_tetro(const char *str)
 	return (0);
 }
 
-int 	check_block(const char *str)
+int			check_block(const char *str)
 {
 	int		i;
-	int 	k;
+	int		k;
 
 	i = 0;
 	k = 0;
-	while ((str[i] == '.' || str[i] == '#' || str[i] == '\n') && k < 5 && str[i])
+	while ((str[i] == '.' || str[i] == '#' || str[i] == '\n')
+			&& k < 5 && str[i])
 	{
 		if (i == 20)
-			break;
+			break ;
 		if (((i + 1) % 5 == 0) && str[i] != '\n' && i != 0)
 			return (0);
 		if (str[i] == '#')
@@ -46,14 +59,14 @@ int 	check_block(const char *str)
 	}
 	if (k == 4 && check_tetro(str))
 	{
-		if (((str[i] == '\n' && str[i - 1] == '\n') || str[i] == '\0') && i == 20)
+		if (((str[i] == '\n' && str[i - 1] == '\n') || str[i]
+				== '\0') && i == 20)
 			return (1);
 	}
-
 	return (0);
 }
 
-int 	check_valid(char *str)
+int			check_valid(char *str)
 {
 	int		i;
 
@@ -72,7 +85,7 @@ int 	check_valid(char *str)
 		if (str[i + 1] == '\n')
 			i += 2;
 		else
-			break;
+			break ;
 	}
 	return (1);
 }
@@ -106,8 +119,8 @@ t_list		*read_file_for_solve(char *str)
 char		*read_file(int fd)
 {
 	char	*str;
-	char 	*tmp;
-	int 	rd;
+	char	*tmp;
+	int		rd;
 
 	tmp = ft_strnew(20);
 	if ((fd < 0 || read(fd, tmp, 0) < 0))

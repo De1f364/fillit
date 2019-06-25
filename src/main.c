@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/25 21:44:24 by neddison          #+#    #+#             */
+/*   Updated: 2019/06/25 21:45:59 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 int		tetro_list_count(t_list *list)
@@ -31,15 +43,12 @@ void	*tetro_list_rev(t_list **tetro_list)
 	*tetro_list = prev;
 }
 
-int main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	char	*str;
-	char	letter;
-	char 	*map;
+	char	*map;
 	t_list	*tetro_list;
 
-//	letter = 'A';
-//	tetro_list = NULL;
 	if (argc != 2)
 	{
 		ft_putstr("usage: you need to put 1 file as parametr");

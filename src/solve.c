@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   solve.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/25 21:54:23 by neddison          #+#    #+#             */
+/*   Updated: 2019/06/25 21:55:41 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
-int		back_track(t_map *map, t_list *lst)
+int			back_track(t_map *map, t_list *lst)
 {
-	int		i;
-	int		j;
+	int			i;
+	int			j;
 	t_tetris	*tetri;
 
 	if (lst == NULL)
@@ -29,7 +41,7 @@ int		back_track(t_map *map, t_list *lst)
 	return (0);
 }
 
-t_map	*solve(t_list *lst)
+t_map		*solve(t_list *lst)
 {
 	t_map	*map;
 	int		size;

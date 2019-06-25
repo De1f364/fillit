@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tetrominos.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/06/25 21:50:44 by neddison          #+#    #+#             */
+/*   Updated: 2019/06/25 21:54:05 by neddison         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fillit.h"
 
 t_tetris		*create_tetris(char **pos, int height, int width, char letter)
@@ -13,7 +25,7 @@ t_tetris		*create_tetris(char **pos, int height, int width, char letter)
 	return (tetris);
 }
 
-t_point		*get_point(int x, int y)
+t_point			*get_point(int x, int y)
 {
 	t_point *point;
 
@@ -68,7 +80,7 @@ t_list			*free_all_tetri(t_list *lst_tetris)
 	return (NULL);
 }
 
-t_list			*get_tetro(char	*str, char letter)
+t_list			*get_tetro(char *str, char letter)
 {
 	t_point		*min;
 	t_point		*max;
@@ -85,11 +97,11 @@ t_list			*get_tetro(char	*str, char letter)
 	{
 		pos[i] = ft_strnew((max->x - min->x) + 1);
 		ft_memcpy(pos[i], &str[min->x + (i + min->y) * 5],
-				  (max->x - min->x) + 1);
+				(max->x - min->x) + 1);
 		i++;
 	}
 	tetris_content = create_tetris(pos, (max->y - min->y) + 1,
-								 (max->x - min->x + 1), letter);
+			(max->x - min->x + 1), letter);
 	ft_memdel((void**)&min);
 	ft_memdel((void**)&max);
 	return (tetris_content);
