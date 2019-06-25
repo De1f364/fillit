@@ -33,10 +33,17 @@ int 	check_block(const char *str);
 int 	check_tetro(const char *str);
 t_list	*get_tetro(char	*str, char letter);
 char	*tetro_for_solve(const char *str, char *tetro);
-t_list	*read_file_for_solve(int fd);
-char 	*create_map(int num);
+t_list	*read_file_for_solve(char *str);
 void	*tetro_list_rev(t_list **tetro_list);
 int		tetro_list_count(t_list *list);
+t_map	*solve(t_list *lst);
+void		setchar_tetri(t_map *map, t_tetris *tetri, t_point *point, char c);
+int			place_tetri(t_map *map, t_tetris *tetri, int x, int y);
+t_map		*create_map(int size);
+t_point		*get_point(int x, int y);
+void		print_map(t_map *map);
+void		free_map(t_map *map);
+t_list		*free_all_tetri(t_list *lst_tetris);
 
 
 #endif

@@ -13,10 +13,6 @@ void		print_map(t_map *map)
 	}
 }
 
-/*
-** Create the map with the given size (size = number of char).
-*/
-
 t_map		*create_map(int size)
 {
 	t_map	*map;
@@ -44,10 +40,6 @@ t_map		*create_map(int size)
 	return (map);
 }
 
-/*
-** Free the allocated memory for the map struct.
-*/
-
 void		free_map(t_map *map)
 {
 	int i;
@@ -62,11 +54,7 @@ void		free_map(t_map *map)
 	free(map);
 }
 
-/*
-** Place a tetrimino on the map with the given coords.
-*/
-
-int			place_tetri(t_map *map, t_tetri *tetri, int x, int y)
+int			place_tetri(t_map *map, t_tetris *tetri, int x, int y)
 {
 	int	i;
 	int	j;
@@ -83,15 +71,11 @@ int			place_tetri(t_map *map, t_tetri *tetri, int x, int y)
 		}
 		++i;
 	}
-	setchar_tetri(map, tetri, create_point(x, y), tetri->letter);
+	setchar_tetri(map, tetri, get_point(x, y), tetri->letter);
 	return (1);
 }
 
-/*
-** Replace the char '#' by the corresponding tetrimino char.
-*/
-
-void		setchar_tetri(t_map *map, t_tetri *tetri, t_point *point, char c)
+void		setchar_tetri(t_map *map, t_tetris *tetri, t_point *point, char c)
 {
 	int	i;
 	int	j;

@@ -10,7 +10,7 @@ int		tetro_list_count(t_list *list)
 		list = list->next;
 		i++;
 	}
-	return (i);
+	return (1);
 }
 
 void	*tetro_list_rev(t_list **tetro_list)
@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 {
 	char	*str;
 	char	letter;
-//	char 	*map;
+	char 	*map;
 	t_list	*tetro_list;
 
 //	letter = 'A';
@@ -59,13 +59,9 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	tetro_list = read_file_for_solve(str);
-
-//	map = create_map(tetro_list_count(tetro_list));
-//	printf("%s", map);
-
-//	print_map(map);
-//	free_all();
-
-
-	return (0);
+	map = solve(tetro_list);
+	print_map(map);
+	free_map(map);
+	free_all_tetri(tetro_list);
+	return (1);
 }
