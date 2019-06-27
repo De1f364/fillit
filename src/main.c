@@ -6,7 +6,7 @@
 /*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 21:44:24 by neddison          #+#    #+#             */
-/*   Updated: 2019/06/25 21:45:59 by neddison         ###   ########.fr       */
+/*   Updated: 2019/06/27 18:12:29 by neddison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ void	*tetro_list_rev(t_list **tetro_list)
 		cur = next;
 	}
 	*tetro_list = prev;
+	return (tetro_list);
 }
 
 int		main(int argc, char **argv)
 {
 	char	*str;
-	char	*map;
+	t_map	*map;
 	t_list	*tetro_list;
 
 	if (argc != 2)
@@ -68,6 +69,6 @@ int		main(int argc, char **argv)
 	map = solve(tetro_list);
 	print_map(map);
 	free_map(map);
-	free_all_tetri(tetro_list);
+	tetro_free(tetro_list);
 	return (1);
 }

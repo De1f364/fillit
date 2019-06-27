@@ -6,7 +6,7 @@
 /*   By: neddison <neddison@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 21:33:49 by neddison          #+#    #+#             */
-/*   Updated: 2019/06/25 21:38:53 by neddison         ###   ########.fr       */
+/*   Updated: 2019/06/25 22:00:16 by neddison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ t_map			*create_map(int size);
 t_point			*get_point(int x, int y);
 void			print_map(t_map *map);
 void			free_map(t_map *map);
-t_list			*free_all_tetri(t_list *lst_tetris);
+t_list			*tetro_free(t_list *lst_tetris);
 
 #endif

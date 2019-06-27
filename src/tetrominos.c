@@ -58,7 +58,7 @@ void			get_min_and_max(char *tetris, t_point *min, t_point *max)
 	}
 }
 
-t_list			*free_all_tetri(t_list *lst_tetris)
+t_list			*tetro_free(t_list *lst_tetris)
 {
 	t_tetris		*tetris;
 	t_list			*next;
