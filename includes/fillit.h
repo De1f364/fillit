@@ -42,7 +42,7 @@ char			*read_file(int fd);
 int				check_valid(char *str);
 int				check_block(const char *str);
 int				check_tetro(const char *str);
-t_list			*get_tetro(char	*str, char letter);
+t_tetris		*get_tetro(char	*str, char letter);
 char			*tetro_for_solve(const char *str, char *tetro);
 t_list			*read_file_for_solve(char *str);
 void			*tetro_list_rev(t_list **tetro_list);

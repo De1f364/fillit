@@ -1,21 +1,9 @@
 NAME = fillit
 
-
-
 CFLAGS += -Wall -Wextra -Werror
-
 CFLAGS += -I libft/
-
-
-
 SRC = src/*.c
-
-
-
 OBJ = $(SRC:.c=.o)
-
-
-
 LIBFT = libft/libft.a
 
 

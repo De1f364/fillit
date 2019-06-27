@@ -80,7 +80,7 @@ t_list			*tetro_free(t_list *lst_tetris)
 	return (NULL);
 }
 
-t_list			*get_tetro(char *str, char letter)
+t_tetris			*get_tetro(char *str, char letter)
 {
 	t_point		*min;
 	t_point		*max;
